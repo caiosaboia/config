@@ -23,9 +23,15 @@ You can also just clone this repository directly if you do not want to track you
 
 #### Clone the repository
 
+##Bash Zsh:
 ```shell
 git clone https://github.com/caiosaboia/config ~/.config/nvim
 ```
+##powershell
+```shell
+git clone https://github.com/caiosaboia/config C:\Users\cocad\AppData\Local\nvim 
+```
+
 
 #### Start Neovim
 
