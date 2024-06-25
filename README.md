@@ -29,7 +29,9 @@ git clone https://github.com/caiosaboia/config ~/.config/nvim
 ```
 powershell
 ```shell
-git clone https://github.com/caiosaboia/config C:\Users\cocad\AppData\Local\nvim 
+git clone --depth 1 https://github.com/caiosaboia/config $env:LOCALAPPDATA\nvim
+Remove-Item $env:LOCALAPPDATA\nvim\.git -Recurse -Force
+nvim
 ```
 
 
