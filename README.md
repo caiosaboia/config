@@ -23,8 +23,17 @@ You can also just clone this repository directly if you do not want to track you
 
 #### Clone the repository
 
+Comando para Linux
+
 ```shell
-git clone https://github.com/<your_user>/<your_repository> ~/.config/nvim
+git clone https://github.com/caiosaboia/config ~/.config/nvim
+rm -rf ~/.config/nvim/.git
+```
+
+Comando para Windows
+```shell
+git clone https://github.com/caiosaboia/config $env:LOCALAPPDATA\nvim
+Remove-Item $env:LOCALAPPDATA\nvim\.git -Recurse -Force
 ```
 
 #### Start Neovim
