@@ -74,6 +74,6 @@ require('lualine').setup({
 		theme = 'horizon',
 	},
 	sections = {
-		lualine_x = {LspIcon,'fileformat', 'filetype'},
+		lualine_x = {LspIcon, 'encoding','fileformat', 'filetype'},
 	},
 })
