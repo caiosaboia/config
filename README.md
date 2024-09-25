@@ -1,4 +1,4 @@
-# AstroNvim Template
+# Meu setup melhor que o do Leo
 
 **NOTE:** This is for AstroNvim v4+
 
