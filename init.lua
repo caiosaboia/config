@@ -168,7 +168,7 @@ local quarto_header = {
 }
 
 vim.keymap.set('n', ' rjb', function()
-  vim.api.nvim_put(quarto_header, 'l', true, true)
+  vim.api.nvim_put(quarto_header, 'c', true, true)
 end, {desc = "Formato Base Quarto", noremap = true, silent = true })
 vim.keymap.set("n", " rji", 'o```{python}\n```<Esc>O', { desc = "Celula Python" , noremap = true, silent = true})
 vim.keymap.set("n", " rjr", 'o```{r}\n```<Esc>O', { desc = "Celular R" , noremap = true, silent = true})
