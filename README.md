@@ -1,3 +1,5 @@
+# Meu setup melhor que o do Leo
+esse é o setup do [Leo](https://github.com/levonhart/config)
 # AstroNvim Template
 
 **NOTE:** This is for AstroNvim v4+
