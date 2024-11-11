@@ -22,6 +22,13 @@ require "lazy_setup"
 require "polish"
 
 vim.opt.relativenumber = true
+vim.o.wrap = true
+vim.g.molten_auto_open_output = false
+vim.g.molten_image_provider = "image.nvim"
+vim.g.molten_wrap_output = true
+vim.g.molten_virt_text_output = true
+vim.g.molten_virt_lines_off_by_1 = true
+vim.g.slime_target = "kitty"
 
 if vim.g.neovide then
   vim.g.neovide_refresh_rate = 60
