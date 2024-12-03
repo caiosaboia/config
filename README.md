@@ -41,6 +41,14 @@ Remove-Item $env:LOCALAPPDATA\nvim\.git -Recurse -Force
 nvim
 ```
 
+#### Others
+
+sioyek (PDF Reader ok?)
+
+```shell
+sudo apt install sioyek
+```
+
 #### Start Neovim
 
 ```shell
