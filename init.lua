@@ -23,6 +23,7 @@ require "polish"
 
 vim.opt.relativenumber = true
 vim.o.wrap = true
+vim.o.cmdheight = 1
 vim.g.molten_auto_open_output = false
 vim.g.molten_image_provider = "image.nvim"
 vim.g.molten_wrap_output = true
