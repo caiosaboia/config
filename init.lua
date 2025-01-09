@@ -202,7 +202,7 @@ require('quarto').setup{
       lspFeatures = {
         enabled = true,
         chunks = "curly",
-        languages = { "r", "python", "julia", "bash", "html" },
+        languages = { "r", "python", "julia", "bash", "html", "latex", "markdown" },
         diagnostics = {
           enabled = true,
           triggers = { "BufWritePost" },
@@ -221,6 +221,16 @@ require('quarto').setup{
     }
 
 
+require('gitsigns').setup {
+    signs = {
+        add          = { text = '▋' }, -- Linha para adições █
+        change       = { text = '▋' }, -- Linha para modificações
+        delete       = { text = '▋' }, -- Linha para remoções
+        topdelete    = { text = '▋' }, -- Remoções no início
+        changedelete = { text = '▋' }, -- Alterações em linhas removidas
+    },
+    -- Outras configurações
+}
 
 
 
