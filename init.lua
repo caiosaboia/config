@@ -232,13 +232,45 @@ require('gitsigns').setup {
     -- Outras configurações
 }
 
-vim.keymap.set('i', '<C-J>', 'copilot#Accept("\\<CR>")', {
+vim.keymap.set('i', '<C-L>', 'copilot#Accept("\\<CR>")', {
   expr = true,
   replace_keycodes = false
 })
 vim.g.copilot_no_tab_map = true
 
+local alpha = require("alpha")
+local dashboard = require("alpha.themes.dashboard")
+local theta = require("alpha.themes.theta")
+-- Cabeçalho (ASCII art) com cores personalizadas
+dashboard.section.header.val = {
+    [[                                   __                ]],
+    [[      ___     ___    ___   __  __ /\_\    ___ ___    ]],
+    [[     / _ `\  / __`\ / __`\/\ \/\ \\/\ \  / __` __`\  ]],
+    [[    /\ \/\ \/\  __//\ \_\ \ \ \_/ |\ \ \/\ \/\ \/\ \ ]],
+    [[    \ \_\ \_\ \____\ \____/\ \___/  \ \_\ \_\ \_\ \_\]],
+    [[     \/_/\/_/\/____/\/___/  \/__/    \/_/\/_/\/_/\/_/]],
+}
+dashboard.section.footer.val = {
+    "If you have ghost, you have everything.",
+}
+dashboard.section.header.opts = {
+    hl = "DashboardHeader", -- Grupo de destaque para o cabeçalho
+    position = "center", -- Posição do cabeçalho
+}
+dashboard.section.buttons.opts = {
+    hl = "DashboardButtons", -- Grupo de destaque para os botões
+    hl_shortcut = "DashboardShortcut", -- Cor do atalho (tecla)
+}
+dashboard.section.footer.opts = {
+    hl = "DashboardFooter", -- Grupo de destaque para o rodapé
+    position = "center", -- Posição do cabeçalho
+}
+vim.cmd([[
+    hi DashboardHeader guifg=#FA8072 guibg=NONE
+    hi DashboardButtons guifg=#8be9fd guibg=NONE
+    hi DashboardShortcut guifg=#50fa7b guibg=NONE
+    hi DashboardFooter guifg=#FF0000 guibg=NONE
+]])
 
 
-
-
+alpha.setup(dashboard.config)
