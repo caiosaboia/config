@@ -31,6 +31,9 @@ Bash Zsh:
 
 ```shell
 git clone https://github.com/caiosaboia/config ~/.config/nvim
+
+#or ssh:
+git clone git@github.com:caiosaboia/config.git ~/.config/nvim
 ```
 
 powershell
