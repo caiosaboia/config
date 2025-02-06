@@ -1,10 +1,8 @@
--- plugins/quarto.lua
 return {
-  {
-    "quarto-dev/quarto-nvim",
-    dependencies = {
-      "jmbuhr/otter.nvim",
-      "nvim-treesitter/nvim-treesitter",
-    },
-  },
-}
+  "quarto-dev/quarto-nvim",
+  config = function()
+    require("quarto").setup({
+      -- suas configurações aqui
+    })
+  end
+} 

@@ -1,3 +1,4 @@
+local config = require "quarto.config"
 -- This file simply bootstraps the installation of Lazy.nvim and then calls other files for execution
 -- This file doesn't necessarily need to be touched, BE CAUTIOUS editing this file and proceed at your own risk.
 local lazypath = vim.env.LAZY or vim.fn.stdpath "data" .. "/lazy/lazy.nvim"
@@ -203,7 +204,7 @@ require('quarto').setup{
         enabled = true,
         chunks = "curly",
         languages = { "r", "python", "julia", "bash", "html", "latex", "markdown" },
-        diagnostics = {
+        diagnostics = {
           enabled = true,
           triggers = { "BufWritePost" },
         },
@@ -219,7 +220,6 @@ require('quarto').setup{
         never_run = { "yaml" }, -- filetypes which are never sent to a code runner
       },
     }
-
 
 require('gitsigns').setup {
     signs = {
@@ -274,3 +274,44 @@ vim.cmd([[
 
 
 alpha.setup(dashboard.config)
+
+vim.g.mkdp_auto_start = 1
+vim.g.mkdp_auto_close = 1
+
+
+require('render-markdown').setup({
+  file_types = { 'markdown', 'quarto' },
+  heading = {
+    enabled = true,
+    sign = false,
+    position = 'overlay',
+    icons = { '󰲡 ', '󰲣 ', '󰲥 ', '󰲧 ', '󰲩 ', '󰲫 ' },
+    signs = { '󰫎 ' },
+    width = 'full',
+    left_margin = 0,
+    left_pad = 0,
+    right_pad = 0,
+    min_width = 0,
+    border = false,
+    border_virtual = false,
+    border_prefix = false,
+    above = '▄',
+    below = '▀',
+    backgrounds = {
+      'RenderMarkdownH1Bg',
+      'RenderMarkdownH3Bg',
+      'RenderMarkdownH1Bg',
+      'RenderMarkdownH3Bg',
+      'RenderMarkdownH1Bg',
+      'RenderMarkdownH3Bg',
+    },
+    foregrounds = {
+      'RenderMarkdownH3',
+      'RenderMarkdownH2',
+      'RenderMarkdownH3',
+      'RenderMarkdownH4',
+      'RenderMarkdownH5',
+      'RenderMarkdownH6',
+    },
+  },
+})
