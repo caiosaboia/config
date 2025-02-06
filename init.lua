@@ -184,41 +184,39 @@ vim.keymap.set("n", " rfa", ':QuartoActivate<CR>', { desc = "Quarto Activate" , 
 vim.keymap.set("n", " rfp", ':QuartoPreview<CR>', { desc = "Quarto Preview" , noremap = true, silent = true})
 vim.keymap.set("n", " rfc", ':QuartoClosePreview<CR>', { desc = "Quarto Close Preview" , noremap = true, silent = true})
 
-
-
-local runner = require("quarto.runner")
-vim.keymap.set("n", " rc", runner.run_cell, {desc = "Run Cell", silent = true})
-vim.keymap.set("n", " ra", runner.run_above, {desc = "Run Cell and Above", silent = true})
-vim.keymap.set("n", " rA", runner.run_all, {desc = "Run All Cells", silent = true})
-vim.keymap.set("n", " rl", runner.run_line, {desc = "Run Line", silent = true})
-vim.keymap.set("n", " r", runner.run_range, {desc = "Cells", silent = true})
-vim.keymap.set("n", " rRA", function ()
-  runner.run_all(true)
-end, {desc = "Run All Cells of All Languages", silent = true})
-
-require('quarto').setup{
-      debug = false,
-      closePreviewOnExit = true,
-      lspFeatures = {
-        enabled = true,
-        chunks = "curly",
-        languages = { "r", "python", "julia", "bash", "html", "latex", "markdown" },
-        diagnostics = {
-          enabled = true,
-          triggers = { "BufWritePost" },
-        },
-        completion = {
-          enabled = true,
-        },
-      },
-      codeRunner = {
-        enabled = false,
-        default_method = 'molten', -- 'molten' or 'slime'
-        ft_runners = {python = "molten", r = "molten"}, -- filetype to runner, ie. `{ python = "molten" }`.
-                         -- Takes precedence over `default_method`
-        never_run = { "yaml" }, -- filetypes which are never sent to a code runner
-      },
-    }
+-- require('quarto').setup{
+--       debug = false,
+--       closePreviewOnExit = true,
+--       lspFeatures = {
+--         enabled = true,
+--         chunks = "curly",
+--         languages = { "r", "python", "julia", "bash", "html", "latex", "markdown" },
+--         diagnostics = {
+--           enabled = true,
+--           triggers = { "BufWritePost" },
+--         },
+--         completion = {
+--           enabled = true,
+--         },
+--       },
+--       codeRunner = {
+--         enabled = false,
+--         default_method = 'molten', -- 'molten' or 'slime'
+--         ft_runners = {python = "molten", r = "molten"}, -- filetype to runner, ie. `{ python = "molten" }`.
+--                          -- Takes precedence over `default_method`
+--         never_run = { "yaml" }, -- filetypes which are never sent to a code runner
+--       },
+--     }
+--
+-- local runner = require("quarto.runner")
+-- vim.keymap.set("n", " rc", runner.run_cell, {desc = "Run Cell", silent = true})
+-- vim.keymap.set("n", " ra", runner.run_above, {desc = "Run Cell and Above", silent = true})
+-- vim.keymap.set("n", " rA", runner.run_all, {desc = "Run All Cells", silent = true})
+-- vim.keymap.set("n", " rl", runner.run_line, {desc = "Run Line", silent = true})
+-- vim.keymap.set("n", " r", runner.run_range, {desc = "Cells", silent = true})
+-- vim.keymap.set("n", " rRA", function ()
+--   runner.run_all(true)
+-- end, {desc = "Run All Cells of All Languages", silent = true})
 
 require('gitsigns').setup {
     signs = {
