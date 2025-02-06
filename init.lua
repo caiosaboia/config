@@ -62,15 +62,14 @@ if vim.g.neovide then
 end
 
 
-require('nvim-web-devicons').setup {
-  override_by_extension = {
-    ["qmd"] = {
-      icon = "",
-      color = "#42f2f5",
-      name = "quarto"
-    }
-  },
-}
+require("nvim-web-devicons").set_icon({
+  qmd = {
+    icon = "󰐗",  -- Altere o ícone para outro de sua preferência
+    color = "#558ADF", -- Cor do ícone
+    cterm_color = "173",
+    name = "Quarto"
+  }
+})
 
 require('lsp-progress').setup({})
 
@@ -219,13 +218,13 @@ vim.keymap.set("n", " rRA", function ()
 end, {desc = "Run All Cells of All Languages", silent = true})
 
 require('gitsigns').setup {
-    signs = {
-        add          = { text = '▋' }, -- Linha para adições █
-        change       = { text = '▋' }, -- Linha para modificações
-        delete       = { text = '▋' }, -- Linha para remoções
-        topdelete    = { text = '▋' }, -- Remoções no início
-        changedelete = { text = '▋' }, -- Alterações em linhas removidas
-    },
+    -- signs = {
+    --     add          = { text = '▋' }, -- Linha para adições █
+    --     change       = { text = '▋' }, -- Linha para modificações
+    --     delete       = { text = '▋' }, -- Linha para remoções
+    --     topdelete    = { text = '▋' }, -- Remoções no início
+    --     changedelete = { text = '▋' }, -- Alterações em linhas removidas
+    -- },
     -- Outras configurações
 }
 
