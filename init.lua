@@ -128,10 +128,17 @@ end
 
 require('lualine').setup({
   options = {
-    theme = 'horizon',
+    -- theme = 'horizon',
+    component_separators = { left = '', right = ''},
+    section_separators = { left = '', right = ''},
   },
   sections = {
-    lualine_x = { virtual_env, LspIcon, 'fileformat', 'filetype' },
+    lualine_a = {'mode'},
+    lualine_b = {'branch', 'diff', 'diagnostics', 'filename'},
+    lualine_c = {},
+    lualine_x = { virtual_env, LspIcon, 'filetype' },
+    lualine_y = {},
+    lualine_z = {'progress','location'}
   },
 })
 
@@ -141,7 +148,7 @@ local quarto_header = {
   'title: "Exemplo de Regressão Linear Simples"',
   "# author: \"\" #if necessary",
   "# date: \"dd/mm/aaaa\" #if necessary",
-  "format:", 
+  "format:",
   "  html:",
   "    toc: true",
   "    number-sections: true",
