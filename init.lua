@@ -208,15 +208,15 @@ vim.keymap.set("n", " rfc", ':QuartoClosePreview<CR>', { desc = "Quarto Close Pr
 --       },
 --     }
 --
--- local runner = require("quarto.codeRunner")
--- vim.keymap.set("n", " rc", runner.run_cell, {desc = "Run Cell", silent = true})
--- vim.keymap.set("n", " ra", runner.run_above, {desc = "Run Cell and Above", silent = true})
--- vim.keymap.set("n", " rA", runner.run_all, {desc = "Run All Cells", silent = true})
--- vim.keymap.set("n", " rl", runner.run_line, {desc = "Run Line", silent = true})
--- vim.keymap.set("n", " r", runner.run_range, {desc = "Cells", silent = true})
--- vim.keymap.set("n", " rRA", function ()
---   runner.run_all(true)
--- end, {desc = "Run All Cells of All Languages", silent = true})
+local runner = require("quarto.runner")
+vim.keymap.set("n", " rc", runner.run_cell, {desc = "Run Cell", silent = true})
+vim.keymap.set("n", " ra", runner.run_above, {desc = "Run Cell and Above", silent = true})
+vim.keymap.set("n", " rA", runner.run_all, {desc = "Run All Cells", silent = true})
+vim.keymap.set("n", " rl", runner.run_line, {desc = "Run Line", silent = true})
+vim.keymap.set("n", " r", runner.run_range, {desc = "Cells", silent = true})
+vim.keymap.set("n", " rRA", function ()
+  runner.run_all(true)
+end, {desc = "Run All Cells of All Languages", silent = true})
 
 require('gitsigns').setup {
     signs = {

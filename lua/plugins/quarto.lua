@@ -11,6 +11,7 @@ return {
       require("quarto").setup{
         debug = false,
         closePreviewOnExit = true,
+        cell_delimiter = "```",
         lspFeatures = {
           enabled = true,
           chunks = "curly",
@@ -23,8 +24,13 @@ return {
             enabled = true,
           },
         },
+        otter = {
+          enabled = true,
+          default = "python",
+          languages = { "r", "python", "julia", "bash" },
+        },
         codeRunner = {
-          enabled = false,
+          enabled = true,
           default_method = 'molten', -- 'molten' or 'slime'
           ft_runners = {python = "molten", r = "molten"}, -- filetype to runner, ie. `{ python = "molten" }`.
           -- Takes precedence over `default_method`
