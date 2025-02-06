@@ -204,7 +204,7 @@ require('quarto').setup{
         enabled = true,
         chunks = "curly",
         languages = { "r", "python", "julia", "bash", "html", "latex", "markdown" },
-        diagnostics = {
+        diagnostics = {
           enabled = true,
           triggers = { "BufWritePost" },
         },
