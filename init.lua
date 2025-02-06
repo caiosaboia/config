@@ -208,7 +208,7 @@ vim.keymap.set("n", " rfc", ':QuartoClosePreview<CR>', { desc = "Quarto Close Pr
 --       },
 --     }
 --
--- local runner = require("quarto.runner")
+-- local runner = require("quarto.codeRunner")
 -- vim.keymap.set("n", " rc", runner.run_cell, {desc = "Run Cell", silent = true})
 -- vim.keymap.set("n", " ra", runner.run_above, {desc = "Run Cell and Above", silent = true})
 -- vim.keymap.set("n", " rA", runner.run_all, {desc = "Run All Cells", silent = true})
