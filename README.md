@@ -11,6 +11,11 @@ A template for getting started with [AstroNvim](https://github.com/AstroNvim/Ast
 ## 😎 Dependencias
 Segue o passo a passo de tudo que instalei na maquina:
 
+```shell
+sudo apt update
+sudo apt upgrade
+```
+
 ## 🛠️ Installation
 
 #### Make a backup of your current nvim and shared folder
