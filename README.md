@@ -11,6 +11,10 @@ A template for getting started with [AstroNvim](https://github.com/AstroNvim/Ast
 ## 😎 Dependencias
 Segue o passo a passo de tudo que instalei na maquina:
 
+### WSL configurações (depende da sua versao)
+Acesse esse [link](https://learn.microsoft.com/pt-br/windows/wsl/setup/environment) para mais detalhes. (Por favor, leia)
+
+### No Linux
 ```shell
 sudo apt update
 sudo apt upgrade
