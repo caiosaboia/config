@@ -8,6 +8,9 @@ esse é o setup do [Leo](https://github.com/levonhart/config)
 
 A template for getting started with [AstroNvim](https://github.com/AstroNvim/AstroNvim)
 
+## 😎 Dependencias
+Segue o passo a passo de tudo que instalei na maquina:
+
 ## 🛠️ Installation
 
 #### Make a backup of your current nvim and shared folder
@@ -58,4 +61,4 @@ sudo apt install sioyek
 nvim
 ```
 
-teste
+
