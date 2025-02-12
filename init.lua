@@ -284,13 +284,23 @@ vim.g.mkdp_auto_close = 1
 
 require('render-markdown').setup({
   file_types = { 'markdown', 'quarto' },
+  sign = {
+    enabled = false,
+  },
+  indent = {enabled = true},
+  dash = {
+    enabled = true,
+    icon = '─',
+    width = 'full',
+    highlight = 'RenderMarkdownDash',
+  },
   heading = {
     enabled = true,
     sign = false,
     position = 'overlay',
-    icons = { '󰲡 ', '󰲣 ', '󰲥 ', '󰲧 ', '󰲩 ', '󰲫 ' },
+    icons = { '󰼏 ', '󰎨 ', '󰼑 ', '󰎲 ', '󰼓 ', '󰎴 ' },
     signs = { '󰫎 ' },
-    width = 'full',
+    width = 'block',
     left_margin = 0,
     left_pad = 0,
     right_pad = 0,
@@ -318,3 +328,4 @@ require('render-markdown').setup({
     },
   },
 })
+
