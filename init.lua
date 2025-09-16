@@ -30,87 +30,131 @@ vim.g.molten_wrap_output = true
 vim.g.molten_virt_text_output = true
 vim.g.molten_virt_lines_off_by_1 = true
 vim.g.slime_target = "kitty"
+-- vim.g.clipboard = "clip"
 
 if vim.g.neovide then
+  vim.o.cmdheight = 1
   vim.g.neovide_refresh_rate = 60
-  vim.g.neovide_transparency = 0.9
+  vim.g.neovide_opacity = 0.99
   vim.g.neovide_floating_blur_amount_x = 2.0
   vim.g.neovide_floating_blur_amount_y = 2.0
   vim.g.neovide_scroll_animation_length = 0.1
   vim.g.neovide_cursor_trail_size = 0.8
-  -- vim.opt.guifont= {'MesloLGSDZ Nerd Font'}
-  vim.keymap.set('n', '<c-s-v>', '"+p')
-  vim.keymap.set('i', '<c-s-v>', '<c-r><c-o>+')
+  vim.opt.guifont = { "MesloLGL Nerd Font:h09" }
+  vim.keymap.set("n", "<c-s-v>", '"+p')
+  vim.keymap.set("i", "<c-s-v>", "<c-r><c-o>+")
 
   local default_font = vim.o.guifont
-  vim.keymap.set({ 'n', 'i' }, '<c-=>', function()
-    local fsize = vim.o.guifont:match('^.*:h([^:]*).*$')
+  vim.keymap.set({ "n", "i" }, "<c-=>", function()
+    local fsize = vim.o.guifont:match "^.*:h([^:]*).*$"
     fsize = tonumber(fsize) + 1
-    local gfont = vim.o.guifont:gsub(':h([^:]*)', ':h' .. fsize)
+    local gfont = vim.o.guifont:gsub(":h([^:]*)", ":h" .. fsize)
     vim.o.guifont = gfont
   end)
 
-  vim.keymap.set({ 'n', 'i' }, '<c-->', function()
-    local fsize = vim.o.guifont:match('^.*:h([^:]*).*$')
+  vim.keymap.set({ "n", "i" }, "<c-->", function()
+    local fsize = vim.o.guifont:match "^.*:h([^:]*).*$"
     fsize = tonumber(fsize) - 1
-    local gfont = vim.o.guifont:gsub(':h([^:]*)', ':h' .. fsize)
+    local gfont = vim.o.guifont:gsub(":h([^:]*)", ":h" .. fsize)
     vim.o.guifont = gfont
   end)
-  vim.keymap.set({ 'n', 'i' }, '<c-0>', function()
-    vim.o.guifont = default_font
-  end)
+  vim.keymap.set({ "n", "i" }, "<c-0>", function() vim.o.guifont = default_font end)
 end
 
+require("toggleterm").setup {
+  shell = "pwsh.exe",
+}
 
-require("nvim-web-devicons").set_icon({
+require("nvim-web-devicons").set_icon {
   qmd = {
-    icon = "󰐗",  -- Altere o ícone para outro de sua preferência
+    icon = "󰐗", -- Altere o ícone para outro de sua preferência
     color = "#558ADF", -- Cor do ícone
     cterm_color = "173",
-    name = "Quarto"
-  }
-})
+    name = "Quarto",
+  },
+}
 
-require('lsp-progress').setup({})
+require("lsp-progress").setup {}
 
+require("catppuccin").setup {
+  flavour = "auto", -- latte, frappe, macchiato, mocha
+  background = { -- :h background
+    light = "latte",
+    dark = "mocha",
+  },
+  transparent_background = true, -- disables setting the background color.
+  float = {
+    transparent = false, -- enable transparent floating windows
+    solid = false, -- use solid styling for floating windows, see |winborder|
+  },
+  show_end_of_buffer = false, -- shows the '~' characters after the end of buffers
+  term_colors = false, -- sets terminal colors (e.g. `g:terminal_color_0`)
+  dim_inactive = {
+    enabled = false, -- dims the background color of inactive window
+    shade = "dark",
+    percentage = 0.15, -- percentage of the shade to apply to the inactive window
+  },
+  no_italic = false, -- Force no italic
+  no_bold = false, -- Force no bold
+  no_underline = false, -- Force no underline
+  styles = { -- Handles the styles of general hi groups (see `:h highlight-args`):
+    comments = { "italic" }, -- Change the style of comments
+    conditionals = { "italic" },
+    loops = {},
+    functions = {},
+    keywords = {},
+    strings = {},
+    variables = {},
+    numbers = {},
+    booleans = {},
+    properties = {},
+    types = {},
+    operators = {},
+    -- miscs = {}, -- Uncomment to turn off hard-coded styles
+  },
+  color_overrides = {},
+  custom_highlights = {},
+  default_integrations = true,
+  auto_integrations = false,
+  integrations = {
+    cmp = true,
+    gitsigns = true,
+    nvimtree = true,
+    treesitter = true,
+    notify = false,
+    mini = {
+      enabled = true,
+      indentscope_color = "",
+    },
+    -- For more plugins integrations please scroll down (https://github.com/catppuccin/nvim#integrations)
+  },
+}
 
 local function LspIcon()
-  return require("lsp-progress").progress({
+  return require("lsp-progress").progress {
     format = function(messages)
       local active_clients = vim.lsp.get_active_clients()
       local client_count = #active_clients
-      if #messages > 0 then
-        return " LSP:"
-            .. " "
-            .. table.concat(messages, " ")
-      end
+      if #messages > 0 then return " LSP:" .. " " .. table.concat(messages, " ") end
       if #active_clients <= 0 then
         return " LSP:"
       else
         local client_names = {}
         for i, client in ipairs(active_clients) do
-          if client and client.name ~= "" then
-            table.insert(client_names, "" .. client.name .. "")
-          end
+          if client and client.name ~= "" then table.insert(client_names, "" .. client.name .. "") end
         end
-        return " LSP:"
-            .. " "
-            .. table.concat(client_names, " ")
+        return " LSP:" .. " " .. table.concat(client_names, " ")
       end
     end,
-  })
+  }
 end
-
-
 
 local virtual_env = function()
   -- only show virtual env for Python
-  if vim.bo.filetype ~= 'python' then
-    return ""
-  end
+  if vim.bo.filetype ~= "python" then return "" end
 
-  local conda_env = os.getenv('CONDA_DEFAULT_ENV')
-  local venv_path = os.getenv('VIRTUAL_ENV')
+  local conda_env = os.getenv "CONDA_DEFAULT_ENV"
+  local venv_path = os.getenv "VIRTUAL_ENV"
 
   if venv_path == nil then
     if conda_env == nil then
@@ -119,36 +163,34 @@ local virtual_env = function()
       return string.format("  %s (conda)", conda_env)
     end
   else
-    local venv_name = vim.fn.fnamemodify(venv_path, ':t')
+    local venv_name = vim.fn.fnamemodify(venv_path, ":t")
     return string.format("  %s (venv)", venv_name)
   end
 end
 
-
-
-require('lualine').setup({
+require("lualine").setup {
   options = {
     -- theme = 'horizon',
-    component_separators = { left = '', right = ''},
-    section_separators = { left = '', right = ''},
+    component_separators = { left = "", right = "" },
+    section_separators = { left = "", right = "" },
   },
   sections = {
-    lualine_a = {'mode'},
-    lualine_b = {'branch', 'diff', 'diagnostics', 'filename'},
+    lualine_a = { "mode" },
+    lualine_b = { "branch", "diff", "diagnostics", "filename" },
     lualine_c = {},
-    lualine_x = { virtual_env, LspIcon, 'filetype' },
+    lualine_x = { virtual_env, LspIcon, "filetype" },
     lualine_y = {},
-    lualine_z = {'progress','location'}
+    lualine_z = { "progress", "location" },
   },
-})
+}
 
 -- Define o bloco de texto como uma tabela de linhas
 local quarto_header = {
   "---",
-  "# title: \"title\"",
-  "# subtitle: \" subtitulo\"",
-  "# author: \"seu nome\"",
-  "# date: \"dd/mm/aaaa\" #if necessary",
+  '# title: "title"',
+  '# subtitle: " subtitulo"',
+  '# author: "seu nome"',
+  '# date: "dd/mm/aaaa" #if necessary',
   "format:",
   "  html:",
   "    toc: false",
@@ -181,15 +223,15 @@ local quarto_header = {
   "jupyter: python3 #can be use for Julia too",
   "  # or can be use something like this:",
   "  # kernelspec:",
-  "  #   name: \"xpython\"",
-  "  #   language: \"python\"",
-  "  #   display_name: \"Python 3.7 (XPython)\"",
+  '  #   name: "xpython"',
+  '  #   language: "python"',
+  '  #   display_name: "Python 3.7 (XPython)"',
   "",
   "#R",
   "knitr:",
   "  opts_chunk:",
   "    collapse: true",
-  "    comment: \">>\"",
+  '    comment: ">>"',
   "    R.options:",
   "      knitr.graphics.auto_pdf: true",
   "",
@@ -197,14 +239,17 @@ local quarto_header = {
   "---",
 }
 
-vim.keymap.set('n', ' rjb', function()
-  vim.api.nvim_put(quarto_header, 'l', true, true)
-end, {desc = "Formato Base Quarto", noremap = true, silent = true })
-vim.keymap.set("n", " rji", 'o```{python}\n```<Esc>O', { desc = "Celula Python" , noremap = true, silent = true})
-vim.keymap.set("n", " rjr", 'o```{r}\n```<Esc>O', { desc = "Celular R" , noremap = true, silent = true})
-vim.keymap.set("n", " rfa", ':QuartoActivate<CR>', { desc = "Quarto Activate" , noremap = true, silent = true})
-vim.keymap.set("n", " rfp", ':QuartoPreview<CR>', { desc = "Quarto Preview" , noremap = true, silent = true})
-vim.keymap.set("n", " rfc", ':QuartoClosePreview<CR>', { desc = "Quarto Close Preview" , noremap = true, silent = true})
+vim.keymap.set(
+  "n",
+  " rjb",
+  function() vim.api.nvim_put(quarto_header, "l", true, true) end,
+  { desc = "Formato Base Quarto", noremap = true, silent = true }
+)
+vim.keymap.set("n", " rji", "o```{python}\n```<Esc>O", { desc = "Celula Python", noremap = true, silent = true })
+vim.keymap.set("n", " rjr", "o```{r}\n```<Esc>O", { desc = "Celular R", noremap = true, silent = true })
+vim.keymap.set("n", " rfa", ":QuartoActivate<CR>", { desc = "Quarto Activate", noremap = true, silent = true })
+vim.keymap.set("n", " rfp", ":QuartoPreview<CR>", { desc = "Quarto Preview", noremap = true, silent = true })
+vim.keymap.set("n", " rfc", ":QuartoClosePreview<CR>", { desc = "Quarto Close Preview", noremap = true, silent = true })
 
 -- require('quarto').setup{
 --       debug = false,
@@ -230,93 +275,94 @@ vim.keymap.set("n", " rfc", ':QuartoClosePreview<CR>', { desc = "Quarto Close Pr
 --       },
 --     }
 --
-local runner = require("quarto.runner")
-vim.keymap.set("n", " rc", runner.run_cell, {desc = "Run Cell", silent = true})
-vim.keymap.set("n", " ra", runner.run_above, {desc = "Run Cell and Above", silent = true})
-vim.keymap.set("n", " rA", runner.run_all, {desc = "Run All Cells", silent = true})
-vim.keymap.set("n", " rl", runner.run_line, {desc = "Run Line", silent = true})
-vim.keymap.set("n", " r", runner.run_range, {desc = "Cells", silent = true})
-vim.keymap.set("n", " rRA", function ()
-  runner.run_all(true)
-end, {desc = "Run All Cells of All Languages", silent = true})
+local runner = require "quarto.runner"
+vim.keymap.set("n", " rc", runner.run_cell, { desc = "Run Cell", silent = true })
+vim.keymap.set("n", " ra", runner.run_above, { desc = "Run Cell and Above", silent = true })
+vim.keymap.set("n", " rA", runner.run_all, { desc = "Run All Cells", silent = true })
+vim.keymap.set("n", " rl", runner.run_line, { desc = "Run Line", silent = true })
+vim.keymap.set("n", " r", runner.run_range, { desc = "Cells", silent = true })
+vim.keymap.set(
+  "n",
+  " rRA",
+  function() runner.run_all(true) end,
+  { desc = "Run All Cells of All Languages", silent = true }
+)
 
-require('gitsigns').setup {
-    -- signs = {
-    --     add          = { text = '▋' }, -- Linha para adições █
-    --     change       = { text = '▋' }, -- Linha para modificações
-    --     delete       = { text = '▋' }, -- Linha para remoções
-    --     topdelete    = { text = '▋' }, -- Remoções no início
-    --     changedelete = { text = '▋' }, -- Alterações em linhas removidas
-    -- },
-    -- Outras configurações
+require("gitsigns").setup {
+  -- signs = {
+  --     add          = { text = '▋' }, -- Linha para adições █
+  --     change       = { text = '▋' }, -- Linha para modificações
+  --     delete       = { text = '▋' }, -- Linha para remoções
+  --     topdelete    = { text = '▋' }, -- Remoções no início
+  --     changedelete = { text = '▋' }, -- Alterações em linhas removidas
+  -- },
+  -- Outras configurações
 }
 
-vim.keymap.set('i', '<C-L>', 'copilot#Accept("\\<CR>")', {
-  expr = true,
-  replace_keycodes = false
-})
-vim.g.copilot_no_tab_map = true
+-- vim.keymap.set("i", "<C-L>", 'copilot#Accept("\\<CR>")', {
+--   expr = true,
+--   replace_keycodes = false,
+-- })
+-- vim.g.copilot_no_tab_map = true
 
-local alpha = require("alpha")
-local dashboard = require("alpha.themes.dashboard")
-local theta = require("alpha.themes.theta")
+local alpha = require "alpha"
+local dashboard = require "alpha.themes.dashboard"
+local theta = require "alpha.themes.theta"
 -- Cabeçalho (ASCII art) com cores personalizadas
 dashboard.section.header.val = {
-    [[                                   __                ]],
-    [[      ___     ___    ___   __  __ /\_\    ___ ___    ]],
-    [[     / _ `\  / __`\ / __`\/\ \/\ \\/\ \  / __` __`\  ]],
-    [[    /\ \/\ \/\  __//\ \_\ \ \ \_/ |\ \ \/\ \/\ \/\ \ ]],
-    [[    \ \_\ \_\ \____\ \____/\ \___/  \ \_\ \_\ \_\ \_\]],
-    [[     \/_/\/_/\/____/\/___/  \/__/    \/_/\/_/\/_/\/_/]],
+  [[                                   __                ]],
+  [[      ___     ___    ___   __  __ /\_\    ___ ___    ]],
+  [[     / _ `\  / __`\ / __`\/\ \/\ \\/\ \  / __` __`\  ]],
+  [[    /\ \/\ \/\  __//\ \_\ \ \ \_/ |\ \ \/\ \/\ \/\ \ ]],
+  [[    \ \_\ \_\ \____\ \____/\ \___/  \ \_\ \_\ \_\ \_\]],
+  [[     \/_/\/_/\/____/\/___/  \/__/    \/_/\/_/\/_/\/_/]],
 }
 dashboard.section.footer.val = {
-    "If you have ghost, you have everything.",
+  "If you have ghost, you have everything.",
 }
 dashboard.section.header.opts = {
-    hl = "DashboardHeader", -- Grupo de destaque para o cabeçalho
-    position = "center", -- Posição do cabeçalho
+  hl = "DashboardHeader", -- Grupo de destaque para o cabeçalho
+  position = "center", -- Posição do cabeçalho
 }
 dashboard.section.buttons.opts = {
-    hl = "DashboardButtons", -- Grupo de destaque para os botões
-    hl_shortcut = "DashboardShortcut", -- Cor do atalho (tecla)
+  hl = "DashboardButtons", -- Grupo de destaque para os botões
+  hl_shortcut = "DashboardShortcut", -- Cor do atalho (tecla)
 }
 dashboard.section.footer.opts = {
-    hl = "DashboardFooter", -- Grupo de destaque para o rodapé
-    position = "center", -- Posição do cabeçalho
+  hl = "DashboardFooter", -- Grupo de destaque para o rodapé
+  position = "center", -- Posição do cabeçalho
 }
-vim.cmd([[
+vim.cmd [[
     hi DashboardHeader guifg=#FA8072 guibg=NONE
     hi DashboardButtons guifg=#8be9fd guibg=NONE
     hi DashboardShortcut guifg=#50fa7b guibg=NONE
     hi DashboardFooter guifg=#FF0000 guibg=NONE
-]])
-
+]]
 
 alpha.setup(dashboard.config)
 
 vim.g.mkdp_auto_start = 1
 vim.g.mkdp_auto_close = 1
 
-
-require('render-markdown').setup({
-  file_types = { 'markdown', 'quarto' },
+require("render-markdown").setup {
+  file_types = { "markdown", "quarto" },
   sign = {
     enabled = false,
   },
-  indent = {enabled = true},
+  indent = { enabled = true },
   dash = {
     enabled = true,
-    icon = '─',
-    width = 'full',
-    highlight = 'RenderMarkdownDash',
+    icon = "─",
+    width = "full",
+    highlight = "RenderMarkdownDash",
   },
   heading = {
     enabled = true,
     sign = false,
-    position = 'overlay',
-    icons = { '󰼏 ', '󰎨 ', '󰼑 ', '󰎲 ', '󰼓 ', '󰎴 ' },
-    signs = { '󰫎 ' },
-    width = 'block',
+    position = "overlay",
+    icons = { "󰼏 ", "󰎨 ", "󰼑 ", "󰎲 ", "󰼓 ", "󰎴 " },
+    signs = { "󰫎 " },
+    width = "block",
     left_margin = 0,
     left_pad = 0,
     right_pad = 0,
@@ -324,24 +370,23 @@ require('render-markdown').setup({
     border = false,
     border_virtual = false,
     border_prefix = false,
-    above = '▄',
-    below = '▀',
+    above = "▄",
+    below = "▀",
     backgrounds = {
-      'RenderMarkdownH1Bg',
-      'RenderMarkdownH3Bg',
-      'RenderMarkdownH1Bg',
-      'RenderMarkdownH3Bg',
-      'RenderMarkdownH1Bg',
-      'RenderMarkdownH3Bg',
+      "RenderMarkdownH1Bg",
+      "RenderMarkdownH3Bg",
+      "RenderMarkdownH1Bg",
+      "RenderMarkdownH3Bg",
+      "RenderMarkdownH1Bg",
+      "RenderMarkdownH3Bg",
     },
     foregrounds = {
-      'RenderMarkdownH3',
-      'RenderMarkdownH2',
-      'RenderMarkdownH3',
-      'RenderMarkdownH4',
-      'RenderMarkdownH5',
-      'RenderMarkdownH6',
+      "RenderMarkdownH3",
+      "RenderMarkdownH2",
+      "RenderMarkdownH3",
+      "RenderMarkdownH4",
+      "RenderMarkdownH5",
+      "RenderMarkdownH6",
     },
   },
-})
-
+}
