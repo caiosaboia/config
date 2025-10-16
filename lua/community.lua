@@ -7,13 +7,9 @@ return {
   "AstroNvim/astrocommunity",
   { import = "astrocommunity.pack.lua" },
   -- import/override with your plugins folder
-  { import = "astrocommunity.colorscheme.catppuccin" },
-  { import = "astrocommunity.colorscheme.kanagawa-nvim" },
-  { import = "astrocommunity.colorscheme.nightfox-nvim" },
-  { import = "astrocommunity.colorscheme.oxocarbon-nvim" },
-  { import = "astrocommunity.colorscheme.tokyonight-nvim" },
+  -- { import = "astrocommunity.colorscheme." },
   { import = "astrocommunity.colorscheme.vscode-nvim" },
-  { import = "astrocommunity.colorscheme.horizon-nvim" },
-  { import = "astrocommunity.colorscheme.tokyodark-nvim" },
-  { import = "astrocommunity.colorscheme.dracula-nvim" },
+  -- { import = "astrocommunity.bars-and-lines.lualine-nvim" },
+  { import = "astrocommunity.bars-and-lines.dropbar-nvim" },
+  { import = "astrocommunity.motion.mini-surround" },
 }

@@ -29,13 +29,18 @@ vim.g.molten_image_provider = "image.nvim"
 vim.g.molten_wrap_output = true
 vim.g.molten_virt_text_output = true
 vim.g.molten_virt_lines_off_by_1 = true
-vim.g.slime_target = "kitty"
+vim.diagnostic.config {
+  virtual_text = false,
+}
+-- vim.g.slime_target = "kitty"
 -- vim.g.clipboard = "clip"
 
 if vim.g.neovide then
+  vim.o.title = true
+  vim.o.titlestring = "Neovide"
   vim.o.cmdheight = 1
   vim.g.neovide_refresh_rate = 60
-  vim.g.neovide_opacity = 0.99
+  vim.g.neovide_opacity = 0.9
   vim.g.neovide_floating_blur_amount_x = 2.0
   vim.g.neovide_floating_blur_amount_y = 2.0
   vim.g.neovide_scroll_animation_length = 0.1
@@ -74,115 +79,44 @@ require("nvim-web-devicons").set_icon {
   },
 }
 
-require("lsp-progress").setup {}
-
-require("catppuccin").setup {
-  flavour = "auto", -- latte, frappe, macchiato, mocha
-  background = { -- :h background
-    light = "latte",
-    dark = "mocha",
-  },
-  transparent_background = true, -- disables setting the background color.
-  float = {
-    transparent = false, -- enable transparent floating windows
-    solid = false, -- use solid styling for floating windows, see |winborder|
-  },
-  show_end_of_buffer = false, -- shows the '~' characters after the end of buffers
-  term_colors = false, -- sets terminal colors (e.g. `g:terminal_color_0`)
-  dim_inactive = {
-    enabled = false, -- dims the background color of inactive window
-    shade = "dark",
-    percentage = 0.15, -- percentage of the shade to apply to the inactive window
-  },
-  no_italic = false, -- Force no italic
-  no_bold = false, -- Force no bold
-  no_underline = false, -- Force no underline
-  styles = { -- Handles the styles of general hi groups (see `:h highlight-args`):
-    comments = { "italic" }, -- Change the style of comments
-    conditionals = { "italic" },
-    loops = {},
-    functions = {},
-    keywords = {},
-    strings = {},
-    variables = {},
-    numbers = {},
-    booleans = {},
-    properties = {},
-    types = {},
-    operators = {},
-    -- miscs = {}, -- Uncomment to turn off hard-coded styles
-  },
-  color_overrides = {},
-  custom_highlights = {},
-  default_integrations = true,
-  auto_integrations = false,
-  integrations = {
-    cmp = true,
-    gitsigns = true,
-    nvimtree = true,
-    treesitter = true,
-    notify = false,
-    mini = {
-      enabled = true,
-      indentscope_color = "",
-    },
-    -- For more plugins integrations please scroll down (https://github.com/catppuccin/nvim#integrations)
-  },
-}
-
-local function LspIcon()
-  return require("lsp-progress").progress {
-    format = function(messages)
-      local active_clients = vim.lsp.get_active_clients()
-      local client_count = #active_clients
-      if #messages > 0 then return " LSP:" .. " " .. table.concat(messages, " ") end
-      if #active_clients <= 0 then
-        return " LSP:"
-      else
-        local client_names = {}
-        for i, client in ipairs(active_clients) do
-          if client and client.name ~= "" then table.insert(client_names, "" .. client.name .. "") end
-        end
-        return " LSP:" .. " " .. table.concat(client_names, " ")
-      end
-    end,
-  }
-end
-
-local virtual_env = function()
-  -- only show virtual env for Python
-  if vim.bo.filetype ~= "python" then return "" end
-
-  local conda_env = os.getenv "CONDA_DEFAULT_ENV"
-  local venv_path = os.getenv "VIRTUAL_ENV"
-
-  if venv_path == nil then
-    if conda_env == nil then
-      return ""
-    else
-      return string.format("  %s (conda)", conda_env)
-    end
-  else
-    local venv_name = vim.fn.fnamemodify(venv_path, ":t")
-    return string.format("  %s (venv)", venv_name)
-  end
-end
-
-require("lualine").setup {
-  options = {
-    -- theme = 'horizon',
-    component_separators = { left = "", right = "" },
-    section_separators = { left = "", right = "" },
-  },
-  sections = {
-    lualine_a = { "mode" },
-    lualine_b = { "branch", "diff", "diagnostics", "filename" },
-    lualine_c = {},
-    lualine_x = { virtual_env, LspIcon, "filetype" },
-    lualine_y = {},
-    lualine_z = { "progress", "location" },
-  },
-}
+-- require("lualine").setup {
+--   options = {
+--     component_separators = { left = "", right = "" },
+--     section_separators = { left = "", right = "" },
+--   },
+--   sections = {
+--     lualine_a = { "mode" },
+--     lualine_b = { "branch", "diff", "diagnostics" },
+--     lualine_c = { "filetype" },
+--     lualine_x = { "lsp_status" },
+--     lualine_y = {},
+--     lualine_z = { "mode" },
+--   },
+--   extensions = {
+--     "aerial",
+--     "assistant",
+--     "avante",
+--     "chadtree",
+--     "ctrlspace",
+--     "fern",
+--     "fugitive",
+--     "fzf",
+--     "lazy",
+--     "man",
+--     "mason",
+--     "mundo",
+--     "neo-tree",
+--     "nerdtree",
+--     "nvim-dap-ui",
+--     "nvim-tree",
+--     "oil",
+--     "overseer",
+--     "quickfix",
+--     "symbols-outline",
+--     "toggleterm",
+--     "trouble",
+--   },
+-- }
 
 -- Define o bloco de texto como uma tabela de linhas
 local quarto_header = {
@@ -275,29 +209,18 @@ vim.keymap.set("n", " rfc", ":QuartoClosePreview<CR>", { desc = "Quarto Close Pr
 --       },
 --     }
 --
-local runner = require "quarto.runner"
-vim.keymap.set("n", " rc", runner.run_cell, { desc = "Run Cell", silent = true })
-vim.keymap.set("n", " ra", runner.run_above, { desc = "Run Cell and Above", silent = true })
-vim.keymap.set("n", " rA", runner.run_all, { desc = "Run All Cells", silent = true })
-vim.keymap.set("n", " rl", runner.run_line, { desc = "Run Line", silent = true })
-vim.keymap.set("n", " r", runner.run_range, { desc = "Cells", silent = true })
-vim.keymap.set(
-  "n",
-  " rRA",
-  function() runner.run_all(true) end,
-  { desc = "Run All Cells of All Languages", silent = true }
-)
-
-require("gitsigns").setup {
-  -- signs = {
-  --     add          = { text = '▋' }, -- Linha para adições █
-  --     change       = { text = '▋' }, -- Linha para modificações
-  --     delete       = { text = '▋' }, -- Linha para remoções
-  --     topdelete    = { text = '▋' }, -- Remoções no início
-  --     changedelete = { text = '▋' }, -- Alterações em linhas removidas
-  -- },
-  -- Outras configurações
-}
+-- local runner = require "quarto.runner"
+-- vim.keymap.set("n", " rc", runner.run_cell, { desc = "Run Cell", silent = true })
+-- vim.keymap.set("n", " ra", runner.run_above, { desc = "Run Cell and Above", silent = true })
+-- vim.keymap.set("n", " rA", runner.run_all, { desc = "Run All Cells", silent = true })
+-- vim.keymap.set("n", " rl", runner.run_line, { desc = "Run Line", silent = true })
+-- vim.keymap.set("n", " r", runner.run_range, { desc = "Cells", silent = true })
+-- vim.keymap.set(
+--   "n",
+--   " rRA",
+--   function() runner.run_all(true) end,
+--   { desc = "Run All Cells of All Languages", silent = true }
+-- )
 
 -- vim.keymap.set("i", "<C-L>", 'copilot#Accept("\\<CR>")', {
 --   expr = true,
@@ -389,4 +312,8 @@ require("render-markdown").setup {
       "RenderMarkdownH6",
     },
   },
+}
+
+require("notify").setup {
+  background_colour = "#000000",
 }
