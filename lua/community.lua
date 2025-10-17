@@ -11,5 +11,6 @@ return {
   { import = "astrocommunity.colorscheme.vscode-nvim" },
   -- { import = "astrocommunity.bars-and-lines.lualine-nvim" },
   { import = "astrocommunity.bars-and-lines.dropbar-nvim" },
+  { import = "astrocommunity.bars-and-lines.bufferline-nvim" },
   { import = "astrocommunity.motion.mini-surround" },
 }
