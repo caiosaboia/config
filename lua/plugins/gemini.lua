@@ -6,7 +6,7 @@ return {
       temperature = 0.3,
     },
     completion = {
-      insert_result_key = "<C-l>",
+      insert_result_key = "<C-j>",
     },
   },
 }

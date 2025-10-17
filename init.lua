@@ -36,6 +36,7 @@ vim.diagnostic.config {
 -- vim.g.clipboard = "clip"
 
 if vim.g.neovide then
+  vim.cmd ":colorscheme material-deep-ocean"
   vim.o.title = true
   vim.o.titlestring = "Neovide"
   vim.o.cmdheight = 1
@@ -45,7 +46,7 @@ if vim.g.neovide then
   vim.g.neovide_floating_blur_amount_y = 2.0
   vim.g.neovide_scroll_animation_length = 0.1
   vim.g.neovide_cursor_trail_size = 0.8
-  vim.opt.guifont = { "MesloLGL Nerd Font:h09" }
+  vim.opt.guifont = { "MesloLGLDZ Nerd Font:h09" }
   vim.keymap.set("n", "<c-s-v>", '"+p')
   vim.keymap.set("i", "<c-s-v>", "<c-r><c-o>+")
 
@@ -222,15 +223,9 @@ vim.keymap.set("n", " rfc", ":QuartoClosePreview<CR>", { desc = "Quarto Close Pr
 --   { desc = "Run All Cells of All Languages", silent = true }
 -- )
 
--- vim.keymap.set("i", "<C-L>", 'copilot#Accept("\\<CR>")', {
---   expr = true,
---   replace_keycodes = false,
--- })
--- vim.g.copilot_no_tab_map = true
-
 local alpha = require "alpha"
 local dashboard = require "alpha.themes.dashboard"
-local theta = require "alpha.themes.theta"
+-- local theta = require "alpha.themes.theta"
 -- Cabeçalho (ASCII art) com cores personalizadas
 dashboard.section.header.val = {
   [[                                   __                ]],
@@ -314,6 +309,18 @@ require("render-markdown").setup {
   },
 }
 
-require("notify").setup {
-  background_colour = "#000000",
+require("lspconfig").pylsp.setup {
+  settings = {
+    pylsp = {
+      plugins = {
+        pycodestyle = {
+          ignore = { "E501" },
+          maxLineLength = 100,
+        },
+        ruff = {
+          enabled = true,
+        },
+      },
+    },
+  },
 }
