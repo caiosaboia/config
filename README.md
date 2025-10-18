@@ -14,6 +14,9 @@ Segue o passo a passo de tudo que instalei na maquina:
 ### WSL configurações (depende da sua versao)
 Acesse esse [link](https://learn.microsoft.com/pt-br/windows/wsl/setup/environment) para mais detalhes. (Por favor, leia)
 
+### Na marra no powershell
+baixar uma porrada de coisa com o cargo ai meu mano!
+
 ### No Linux
 ```shell
 sudo apt update
@@ -52,7 +55,8 @@ powershell
 
 ```shell
 git clone --depth 1 https://github.com/caiosaboia/config $env:LOCALAPPDATA\nvim
-Remove-Item $env:LOCALAPPDATA\nvim\.git -Recurse -Force
+#so se quiser
+#Remove-Item $env:LOCALAPPDATA\nvim\.git -Recurse -Force
 nvim
 ```
 
