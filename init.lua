@@ -228,12 +228,11 @@ local dashboard = require "alpha.themes.dashboard"
 -- local theta = require "alpha.themes.theta"
 -- Cabeçalho (ASCII art) com cores personalizadas
 dashboard.section.header.val = {
-  [[                                   __                ]],
-  [[      ___     ___    ___   __  __ /\_\    ___ ___    ]],
-  [[     / _ `\  / __`\ / __`\/\ \/\ \\/\ \  / __` __`\  ]],
-  [[    /\ \/\ \/\  __//\ \_\ \ \ \_/ |\ \ \/\ \/\ \/\ \ ]],
-  [[    \ \_\ \_\ \____\ \____/\ \___/  \ \_\ \_\ \_\ \_\]],
-  [[     \/_/\/_/\/____/\/___/  \/__/    \/_/\/_/\/_/\/_/]],
+  [[    ___         __             _   __      _         ]],
+  [[   /   |  _____/ /__________  / | / /   __(_)___ ___ ]],
+  [[  / /| | / ___/ __/ ___/ __ \/  |/ / | / / / __ `__ \]],
+  [[ / ___ |(__  ) /_/ /  / /_/ / /|  /| |/ / / / / / / /]],
+  [[/_/  |_/____/\__/_/   \____/_/ |_/ |___/_/_/ /_/ /_/ ]],
 }
 dashboard.section.footer.val = {
   "If you have ghost, you have everything.",

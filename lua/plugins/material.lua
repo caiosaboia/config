@@ -5,7 +5,7 @@ return {
 
     contrast = {
       terminal = true, -- Enable contrast for the built-in terminal
-      sidebars = true, -- Enable contrast for sidebar-like windows ( for example Nvim-Tree )
+      sidebars = false, -- Enable contrast for sidebar-like windows ( for example Nvim-Tree )
       floating_windows = true, -- Enable contrast for floating windows
       cursor_line = true, -- Enable darker background for the cursor line
       lsp_virtual_text = true, -- Enable contrasted background for lsp virtual text

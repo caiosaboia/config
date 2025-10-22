@@ -7,7 +7,8 @@ return {
   "AstroNvim/astrocommunity",
   { import = "astrocommunity.pack.lua" },
   -- import/override with your plugins folder
-  -- { import = "astrocommunity.colorscheme." },
+  { import = "astrocommunity.colorscheme.kanagawa-nvim" },
+  { import = "astrocommunity.colorscheme.kanagawa-paper-nvim" },
   { import = "astrocommunity.colorscheme.vscode-nvim" },
   -- { import = "astrocommunity.bars-and-lines.lualine-nvim" },
   { import = "astrocommunity.bars-and-lines.dropbar-nvim" },
