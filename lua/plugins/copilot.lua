@@ -4,6 +4,12 @@ return {
     expr = true,
     replace_keycodes = false,
   }),
-  vim.keymap.set("n", "<leader> ce", "<cmd>Copilot enable<CR>", { desc = "Enable Copilot" }),
-  vim.keymap.set("n", "<leader> cd", "<cmd>Copilot disable<CR>", { desc = "Disable Copilot" }),
+  vim.keymap.set("n", "<leader> ce", function()
+    vim.cmd("Copilot enable")
+    vim.notify("Copilot enabled", "info", { title = "Copilot" })
+  end, { desc = "Enable Copilot" }),
+  vim.keymap.set("n", "<leader> cd", function()
+    vim.cmd("Copilot disable")
+    vim.notify("Copilot disabled", "info", { title = "Copilot" })
+  end, { desc = "Disable Copilot" }),
 }
