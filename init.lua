@@ -36,7 +36,7 @@ vim.diagnostic.config {
 -- vim.g.clipboard = "clip"
 
 if vim.g.neovide then
-  vim.cmd ":colorscheme material-deep-ocean"
+  vim.cmd ":colorscheme material-darker"
   vim.o.title = true
   vim.o.titlestring = "Neovide"
   vim.o.cmdheight = 1
