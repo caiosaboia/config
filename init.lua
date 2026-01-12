@@ -41,12 +41,12 @@ if vim.g.neovide then
   vim.o.titlestring = "Neovide"
   vim.o.cmdheight = 0
   vim.g.neovide_refresh_rate = 60
-  vim.g.neovide_opacity = 1
+  vim.g.neovide_opacity = 0.9
   vim.g.neovide_floating_blur_amount_x = 2.0
   vim.g.neovide_floating_blur_amount_y = 2.0
-  vim.g.neovide_scroll_animation_length = 0.5
+  vim.g.neovide_scroll_animation_length = 0.3
   vim.g.neovide_cursor_trail_size = 0.8
-  vim.opt.guifont = { "MesloLGLDZ Nerd Font:h07" }
+  vim.opt.guifont = { "MesloLGLDZ Nerd Font:h08" }
   vim.keymap.set("n", "<c-s-v>", '"+p')
   vim.keymap.set("i", "<c-s-v>", "<c-r><c-o>+")
 
@@ -234,21 +234,21 @@ dashboard.section.header.val = {
   -- [[ / ___ |(__  ) /_/ /  / /_/ / /|  /| |/ / / / / / / /]],
   -- [[/_/  |_/____/\__/_/   \____/_/ |_/ |___/_/_/ /_/ /_/ ]],
 
-  [[                                                  :                                                        ]],
-  [[                         .                       t#,     L.                                                ]],
-  [[                        ;W          j.          ;##W.    EW:        ,ft            t                       ]],
-  [[             ..        f#E GEEEEEEELEW,        :#L:WE    E##;       t#E            Ej            ..       :]],
-  [[            ;W,      .E#f  ,;;L#K;;.E##j      .KG  ,#D   E###t      t#E t      .DD.E#,          ,W,     .Et]],
-  [[           j##,     iWW;      t#E   E###D.    EE    ;#f  E#fE#f     t#E EK:   ,WK. E#t         t##,    ,W#t]],
-  [[          G###,    L##Lffi    t#E   E#jG#W;  f#.     t#i E#t D#G    t#E E#t  i#D   E#t        L###,   j###t]],
-  [[        :E####,   tLLG##L     t#E   E#t t##f :#G     GK  E#t  f#E.  t#E E#t j#f    E#t      .E#j##,  G#fE#t]],
-  [[       ;W#DG##,     ,W#i      t#E   E#t  :K#E:;#L   LW.  E#t   t#K: t#E E#tL#i     E#t     ;WW; ##,:K#i E#t]],
-  [[      j###DW##,    j#E.       t#E   E#KDDDD###it#f f#:   E#t    ;#W,t#E E#WW,      E#t    j#E.  ##f#W,  E#t]],
-  [[     G##i,,G##,  .D#j         t#E   E#f,t#Wi,,, f#D#;    E#t     :K#D#E E#K:       E#t  .D#L    ###K:   E#t]],
-  [[   :K#K:   L##, ,WK,          t#E   E#t  ;#W:    G#t     E#t      .E##E ED.        E#t :K#t     ##D.    E#t]],
-  [[  ;##D.    L##, EG.            fE   DWi   ,KK:    t      ..         G#E t          E#t ...      #G      .. ]],
-  [[  ,,,      .,,  ,               :                                    fE            ,;.          j          ]],
-  [[                                                                      ,                                    ]],
+  -- [[                                                  :                                                        ]],
+  -- [[                         .                       t#,     L.                                                ]],
+  -- [[                        ;W          j.          ;##W.    EW:        ,ft            t                       ]],
+  -- [[             ..        f#E GEEEEEEELEW,        :#L:WE    E##;       t#E            Ej            ..       :]],
+  -- [[            ;W,      .E#f  ,;;L#K;;.E##j      .KG  ,#D   E###t      t#E t      .DD.E#,          ,W,     .Et]],
+  -- [[           j##,     iWW;      t#E   E###D.    EE    ;#f  E#fE#f     t#E EK:   ,WK. E#t         t##,    ,W#t]],
+  -- [[          G###,    L##Lffi    t#E   E#jG#W;  f#.     t#i E#t D#G    t#E E#t  i#D   E#t        L###,   j###t]],
+  -- [[        :E####,   tLLG##L     t#E   E#t t##f :#G     GK  E#t  f#E.  t#E E#t j#f    E#t      .E#j##,  G#fE#t]],
+  -- [[       ;W#DG##,     ,W#i      t#E   E#t  :K#E:;#L   LW.  E#t   t#K: t#E E#tL#i     E#t     ;WW; ##,:K#i E#t]],
+  -- [[      j###DW##,    j#E.       t#E   E#KDDDD###it#f f#:   E#t    ;#W,t#E E#WW,      E#t    j#E.  ##f#W,  E#t]],
+  -- [[     G##i,,G##,  .D#j         t#E   E#f,t#Wi,,, f#D#;    E#t     :K#D#E E#K:       E#t  .D#L    ###K:   E#t]],
+  -- [[   :K#K:   L##, ,WK,          t#E   E#t  ;#W:    G#t     E#t      .E##E ED.        E#t :K#t     ##D.    E#t]],
+  -- [[  ;##D.    L##, EG.            fE   DWi   ,KK:    t      ..         G#E t          E#t ...      #G      .. ]],
+  -- [[  ,,,      .,,  ,               :                                    fE            ,;.          j          ]],
+  -- [[                                                                      ,                                    ]],
 }
 dashboard.section.footer.val = {
   "If you have ghost, you have everything.",

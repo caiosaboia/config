@@ -5,7 +5,7 @@ return {
 
     contrast = {
       terminal = true, -- Enable contrast for the built-in terminal
-      sidebars = false, -- Enable contrast for sidebar-like windows ( for example Nvim-Tree )
+      sidebars = true, -- Enable contrast for sidebar-like windows ( for example Nvim-Tree )
       floating_windows = true, -- Enable contrast for floating windows
       cursor_line = true, -- Enable darker background for the cursor line
       lsp_virtual_text = true, -- Enable contrasted background for lsp virtual text
@@ -57,10 +57,10 @@ return {
 
     disable = {
       colored_cursor = false, -- Disable the colored cursor
-      borders = true, -- Disable borders between vertically split windows
+      borders = false, -- Disable borders between vertically split windows
       background = false, -- Prevent the theme from setting the background (NeoVim then uses your terminal background)
       term_colors = false, -- Prevent the theme from setting terminal colors
-      eob_lines = true, -- Hide the end-of-buffer lines
+      eob_lines = false, -- Hide the end-of-buffer lines
     },
 
     high_visibility = {
