@@ -45,8 +45,8 @@ if vim.g.neovide then
   vim.o.title = true
   vim.o.titlestring = "Neovide"
   vim.o.cmdheight = 0
-  vim.g.neovide_refresh_rate = 60
-  vim.g.neovide_opacity = 0.9
+  vim.g.neovide_refresh_rate = 120
+  vim.g.neovide_opacity = 1
   vim.g.neovide_floating_blur_amount_x = 2.0
   vim.g.neovide_floating_blur_amount_y = 2.0
   vim.g.neovide_scroll_animation_length = 0.3

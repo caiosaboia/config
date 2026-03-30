@@ -8,7 +8,6 @@
 return {
   "AstroNvim/astrocommunity",
   { import = "astrocommunity.pack.lua" },
-  { import = "astrocommunity.pack.python-ruff" },
   { import = "astrocommunity.pack.json" },
   -- { import = "astrocommunity.pack.sql" },
   { import = "astrocommunity.pack.markdown" },
