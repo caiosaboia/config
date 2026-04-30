@@ -51,7 +51,7 @@ if vim.g.neovide then
   vim.g.neovide_floating_blur_amount_y = 2.0
   vim.g.neovide_scroll_animation_length = 0.3
   vim.g.neovide_cursor_trail_size = 0.8
-  vim.opt.guifont = { "MesloLGLDZ Nerd Font:h08" }
+  vim.opt.guifont = { "MesloLGLDZ Nerd Font:h09" }
   vim.keymap.set("n", "<c-s-v>", '"+p')
   vim.keymap.set("i", "<c-s-v>", "<c-r><c-o>+")
 
