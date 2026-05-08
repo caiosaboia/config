@@ -15,12 +15,21 @@ return {
   -- { import = "astrocommunity.pack.sql" },
   { import = "astrocommunity.pack.markdown" },
   { import = "astrocommunity.icon/mini-icons" },
+
   { import = "astrocommunity.colorscheme.vscode-nvim" },
   { import = "astrocommunity.colorscheme.catppuccin" },
+
   { import = "astrocommunity.completion.copilot-lua" },
+  { import = "astrocommunity.completion.blink-copilot" },
+
+  { import = "astrocommunity.register.nvim-neoclip-lua" },
+
   { import = "astrocommunity.bars-and-lines.dropbar-nvim" },
   { import = "astrocommunity.bars-and-lines.smartcolumn-nvim" },
+  -- { import = "astrocommunity.bars-and-lines.lualine-nvim" },
+
   { import = "astrocommunity.motion.mini-surround" },
+
   { import = "astrocommunity.markdown-and-latex.vimtex" },
   { import = "astrocommunity.markdown-and-latex.render-markdown-nvim" },
 }

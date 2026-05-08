@@ -84,6 +84,27 @@ wk.add {
 }
 -- Copilot Setup {{{
 -- use o alt + l no Normal mode para aceitar a sugestão
+-- Na sua configuração do copilot
+require("copilot").setup {
+  suggestion = {
+    enabled = true,
+    auto_trigger = true,
+    keymap = {
+      accept = "<C-l>",
+    },
+  },
+}
+
+-- Mapeamento manual de segurança (garante o Insert Mode)
+vim.keymap.set("i", "<C-l>", function()
+  if require("copilot.suggestion").is_visible() then
+    require("copilot.suggestion").accept()
+  else
+    vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-l>", true, false, true), "n", false)
+  end
+end, { desc = "Copilot Accept", silent = true })
+
+vim.g.copilot_no_tab_map = true
 vim.keymap.set("n", "<leader>ice", function()
   require("copilot.command").enable()
   require("snacks").notify.info("Copilot Habilitado", {

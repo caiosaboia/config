@@ -12,6 +12,18 @@ return {
   opts = {
     -- change colorscheme
     colorscheme = "catppuccin-mocha",
+    status = {
+      active = {
+        virtual_env = {
+          -- Esta função processa o texto antes de exibir
+          content = function(env_name)
+            -- Pega apenas a última parte do caminho (após a última barra)
+            return env_name:match "([^/\\]+)$"
+          end,
+          padding = { left = 1, right = 1 },
+        },
+      },
+    },
     -- AstroUI allows you to easily modify highlight groups easily for any and all colorschemes
     highlights = {
       init = { -- this table overrides highlights in all themes
