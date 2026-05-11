@@ -10,6 +10,7 @@ return {
   { import = "astrocommunity.pack.lua" },
   { import = "astrocommunity.pack.json" },
   { import = "astrocommunity.pack.python" },
+  { import = "astrocommunity.pack.python.base" },
   -- { import = "astrocommunity.pack.python.ruff" },
   -- { import = "astrocommunity.pack.python.isort" },
   -- { import = "astrocommunity.pack.python.basedpyright" },
