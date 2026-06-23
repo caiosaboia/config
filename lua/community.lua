@@ -34,4 +34,6 @@ return {
 
   { import = "astrocommunity.markdown-and-latex.vimtex" },
   { import = "astrocommunity.markdown-and-latex.render-markdown-nvim" },
+
+  { import = "astrocommunity.ai.codecompanion-nvim" },
 }
