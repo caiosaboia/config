@@ -38,7 +38,19 @@ vim.g.molten_virt_lines_off_by_1 = true
 --   virtual_text = false,
 -- }
 -- vim.g.slime_target = "kitty"
--- vim.g.clipboard = "clip"
+vim.opt.clipboard = "unnamedplus"
+vim.g.clipboard = {
+  name = "win32yank",
+  copy = {
+    ["+"] = "win32yank.exe -i --crlf",
+    ["*"] = "win32yank.exe -i --crlf",
+  },
+  paste = {
+    ["+"] = "win32yank.exe -o --lf",
+    ["*"] = "win32yank.exe -o --lf",
+  },
+  cache_enabled = 0,
+}
 
 -- Neovide {{
 if vim.g.neovide then

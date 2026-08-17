@@ -45,6 +45,60 @@ return {
     -- client specific configuration can also go in `lsp/` in your configuration root (see `:h lsp-config`)
     config = {
       -- ["*"] = { capabilities = {} }, -- modify default LSP client settings such as capabilities
+      basedpyright = {
+        root_dir = function(fname)
+          local util = require("lspconfig.util")
+          local default_root = util.root_pattern("pyproject.toml", "setup.py", "setup.cfg", "requirements.txt", "Pipfile", "pyrightconfig.json", ".git")(fname)
+          if default_root then
+            local pyproject = default_root .. "/pyproject.toml"
+            if vim.fn.filereadable(pyproject) == 1 then
+              local has_pyright_config = false
+              if vim.fn.filereadable(default_root .. "/pyrightconfig.json") == 1 then
+                has_pyright_config = true
+              else
+                local lines = vim.fn.readfile(pyproject)
+                for _, line in ipairs(lines) do
+                  if line:match("^%s*%[%s*tool%.pyright%s*%]") or line:match("^%s*%[%s*tool%.basedpyright%s*%]") then
+                    has_pyright_config = true
+                    break
+                  end
+                end
+              end
+              if not has_pyright_config then
+                return nil
+              end
+            end
+          end
+          return default_root
+        end,
+      },
+      pyright = {
+        root_dir = function(fname)
+          local util = require("lspconfig.util")
+          local default_root = util.root_pattern("pyproject.toml", "setup.py", "setup.cfg", "requirements.txt", "Pipfile", "pyrightconfig.json", ".git")(fname)
+          if default_root then
+            local pyproject = default_root .. "/pyproject.toml"
+            if vim.fn.filereadable(pyproject) == 1 then
+              local has_pyright_config = false
+              if vim.fn.filereadable(default_root .. "/pyrightconfig.json") == 1 then
+                has_pyright_config = true
+              else
+                local lines = vim.fn.readfile(pyproject)
+                for _, line in ipairs(lines) do
+                  if line:match("^%s*%[%s*tool%.pyright%s*%]") or line:match("^%s*%[%s*tool%.basedpyright%s*%]") then
+                    has_pyright_config = true
+                    break
+                  end
+                end
+              end
+              if not has_pyright_config then
+                return nil
+              end
+            end
+          end
+          return default_root
+        end,
+      },
     },
     -- customize how language servers are attached
     handlers = {

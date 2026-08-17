@@ -10,7 +10,7 @@ return {
   { import = "astrocommunity.pack.lua" },
   { import = "astrocommunity.pack.json" },
   { import = "astrocommunity.pack.python" },
-  { import = "astrocommunity.pack.python.base" },
+  -- { import = "astrocommunity.pack.python.base" },
   -- { import = "astrocommunity.pack.python.ruff" },
   -- { import = "astrocommunity.pack.python.isort" },
   -- { import = "astrocommunity.pack.python.basedpyright" },
@@ -35,5 +35,6 @@ return {
   { import = "astrocommunity.markdown-and-latex.vimtex" },
   { import = "astrocommunity.markdown-and-latex.render-markdown-nvim" },
 
-  { import = "astrocommunity.ai.codecompanion-nvim" },
+  -- { import = "astrocommunity.ai.avante-nvim" },
+  { import = "astrocommunity.ai.opencode-nvim" },
 }
