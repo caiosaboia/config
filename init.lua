@@ -52,6 +52,24 @@ vim.g.clipboard = {
   cache_enabled = 0,
 }
 
+-- Clipboard Keymaps (Neovide & Terminal)
+local paste_from_clipboard = function()
+  vim.api.nvim_paste(vim.fn.getreg("+"), true, -1)
+end
+
+-- Ctrl+Shift+V: colar em todos os modos
+vim.keymap.set({ "n", "v", "s", "x", "o", "i", "c", "t" }, "<C-S-v>", paste_from_clipboard, { desc = "Paste from clipboard" })
+vim.keymap.set({ "n", "v", "s", "x", "o", "i", "c", "t" }, "<C-S-V>", paste_from_clipboard, { desc = "Paste from clipboard" })
+
+-- Ctrl+V: colar em Insert, Visual e Comando (Normal mode mantém Visual Block)
+vim.keymap.set({ "i", "c" }, "<C-v>", paste_from_clipboard, { desc = "Paste from clipboard" })
+vim.keymap.set({ "v", "x", "s" }, "<C-v>", paste_from_clipboard, { desc = "Paste from clipboard" })
+
+-- Ctrl+Shift+C / Ctrl+C: copiar seleção no modo Visual
+vim.keymap.set({ "v", "x", "s" }, "<C-S-c>", '"+y', { desc = "Copy selection to clipboard" })
+vim.keymap.set({ "v", "x", "s" }, "<C-S-C>", '"+y', { desc = "Copy selection to clipboard" })
+vim.keymap.set({ "v", "x", "s" }, "<C-c>", '"+y', { desc = "Copy selection to clipboard" })
+
 -- Neovide {{
 if vim.g.neovide then
   vim.o.title = true
@@ -64,8 +82,6 @@ if vim.g.neovide then
   vim.g.neovide_scroll_animation_length = 0.3
   vim.g.neovide_cursor_trail_size = 0.8
   vim.opt.guifont = { "MesloLGLDZ Nerd Font:h09" }
-  vim.keymap.set("n", "<c-s-v>", '"+p')
-  vim.keymap.set("i", "<c-s-v>", "<c-r><c-o>+")
 
   local default_font = vim.o.guifont
   vim.keymap.set({ "n", "i" }, "<c-=>", function()
