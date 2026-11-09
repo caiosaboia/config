@@ -23,6 +23,8 @@ if not pcall(require, "lazy") then
   vim.cmd.quit()
 end
 
+vim.g.python3_host_prog = "C:/Users/cocad/miniforge3/python.exe"
+
 require "lazy_setup"
 require "polish"
 
@@ -30,7 +32,8 @@ vim.opt.relativenumber = true
 vim.o.wrap = true
 vim.o.cmdheight = 1
 vim.g.molten_auto_open_output = false
-vim.g.molten_image_provider = "image.nvim"
+vim.g.molten_image_provider = "none"
+vim.g.molten_output_win_max_height = 20
 vim.g.molten_wrap_output = true
 vim.g.molten_virt_text_output = true
 vim.g.molten_virt_lines_off_by_1 = true
@@ -109,6 +112,7 @@ wk.add {
   { "<leader>ic", group = "Copilot" },
   { "<leader>  g", group = "Gemini" },
   { "<leader>i", group = " IA" },
+  { "<leader>m", group = "󰘦 Molten" },
 }
 -- Copilot Setup {{{
 -- use o alt + l no Normal mode para aceitar a sugestão

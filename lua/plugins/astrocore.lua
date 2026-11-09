@@ -48,6 +48,7 @@ return {
         clipboard = "unnamedplus", -- sync with system clipboard
       },
       g = { -- vim.g.<key>
+        python3_host_prog = "C:/Users/cocad/miniforge3/python.exe",
         clipboard = {
           name = "win32yank",
           copy = {
@@ -83,12 +84,22 @@ return {
           desc = "Close buffer from tabline",
         },
 
+        -- Molten keymaps
+        ["<Leader>m"] = { desc = "󰘦 Molten" },
+        ["<Leader>mi"] = { ":MoltenInit<CR>", desc = "Inicializar Molten" },
+        ["<Leader>me"] = { ":MoltenEvaluateLine<CR>", desc = "Executar linha" },
+        ["<Leader>mo"] = { ":MoltenOutputToggle<CR>", desc = "Alternar janela de output" },
+
         -- tables with just a `desc` key will be registered with which-key if it's installed
         -- this is useful for naming menus
         -- ["<Leader>b"] = { desc = "Buffers" },
 
         -- setting a mapping to false will disable it
         -- ["<C-S>"] = false,
+      },
+      v = {
+        ["<Leader>m"] = { desc = "󰘦 Molten" },
+        ["<Leader>me"] = { ":<C-u>MoltenEvaluateVisual<CR>", desc = "Executar seleção visual" },
       },
     },
   },
