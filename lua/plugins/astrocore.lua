@@ -37,6 +37,35 @@ return {
         [".*/etc/foo/.*"] = "fooscript",
       },
     },
+    -- Autocmds gerenciados pelo AstroCore
+    autocmds = {
+      uv_auto_venv = {
+        {
+          event = { "BufEnter", "DirChanged" },
+          desc = "Auto-detect and set VIRTUAL_ENV for Astral UV",
+          callback = function()
+            local ok, molten_uv = pcall(require, "molten.uv")
+            if ok then
+              local root = molten_uv.find_project_root()
+              if root then
+                local venv_path = root .. "/.venv"
+                local uv_loop = vim.uv or vim.loop
+                if uv_loop.fs_stat(venv_path) then
+                  local norm_venv = vim.fs.normalize(venv_path)
+                  if vim.env.VIRTUAL_ENV ~= norm_venv then
+                    vim.env.VIRTUAL_ENV = norm_venv
+                    local scripts = norm_venv .. "/Scripts"
+                    if uv_loop.fs_stat(scripts) and not vim.env.PATH:find(scripts, 1, true) then
+                      vim.env.PATH = scripts .. ";" .. vim.env.PATH
+                    end
+                  end
+                end
+              end
+            end
+          end,
+        },
+      },
+    },
     -- vim options can be configured here
     options = {
       opt = { -- vim.opt.<key>
@@ -86,9 +115,16 @@ return {
 
         -- Molten keymaps
         ["<Leader>m"] = { desc = "󰘦 Molten" },
-        ["<Leader>mi"] = { ":MoltenInit<CR>", desc = "Inicializar Molten" },
-        ["<Leader>me"] = { ":MoltenEvaluateLine<CR>", desc = "Executar linha" },
-        ["<Leader>mo"] = { ":MoltenOutputToggle<CR>", desc = "Alternar janela de output" },
+        ["<Leader>mu"] = { "<Cmd>MoltenInitUV<CR>", desc = "Inicializar com UV (Auto-Kernel)" },
+        ["<Leader>mi"] = { "<Cmd>MoltenInit python3<CR>", desc = "Inicializar Molten (python3)" },
+        ["<Leader>me"] = { "<Cmd>MoltenEvaluateLine<CR>", desc = "Executar linha" },
+        ["<Leader>mc"] = { "<Cmd>MoltenReevaluateCell<CR>", desc = "Re-executar celula" },
+        ["<Leader>mr"] = { "<Cmd>MoltenReevaluateCell<CR>", desc = "Re-executar celula" },
+        ["<Leader>mo"] = { "<Cmd>MoltenOutputToggle<CR>", desc = "Alternar output flutuante" },
+        ["<Leader>mh"] = { "<Cmd>MoltenHideOutput<CR>", desc = "Ocultar output flutuante" },
+        ["<Leader>mp"] = { "<Cmd>MoltenImagePopup<CR>", desc = "Popup de imagem (Pillow)" },
+        ["]c"] = { "<Cmd>MoltenNext<CR>", desc = "Proxima celula Molten" },
+        ["[c"] = { "<Cmd>MoltenPrev<CR>", desc = "Celula Molten anterior" },
 
         -- tables with just a `desc` key will be registered with which-key if it's installed
         -- this is useful for naming menus
@@ -99,7 +135,8 @@ return {
       },
       v = {
         ["<Leader>m"] = { desc = "󰘦 Molten" },
-        ["<Leader>me"] = { ":<C-u>MoltenEvaluateVisual<CR>", desc = "Executar seleção visual" },
+        ["<Leader>me"] = { ":<C-u>MoltenEvaluateVisual<CR>", desc = "Executar selecao visual" },
+        ["<Leader>mr"] = { ":<C-u>MoltenEvaluateVisual<CR>", desc = "Executar selecao visual" },
       },
     },
   },
