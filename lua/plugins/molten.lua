@@ -22,6 +22,43 @@ return {
       vim.api.nvim_create_user_command("MoltenInitUV", function()
         require("molten.uv").init_uv_kernel()
       end, { desc = "Inicializa o kernel Jupyter do projeto UV atual com verificacao de dependencias" })
+
+      -- Comandos do Molten Runner
+      local runner = function()
+        return require("molten.runner")
+      end
+
+      vim.api.nvim_create_user_command("MoltenRunCell", function()
+        runner().run_cell()
+      end, { desc = "Executa a celula atual sob o cursor" })
+
+      vim.api.nvim_create_user_command("MoltenRunAndAdvance", function()
+        runner().run_cell_and_advance()
+      end, { desc = "Executa a celula atual e avanca para a proxima" })
+
+      vim.api.nvim_create_user_command("MoltenRunNext", function()
+        runner().run_next_cell()
+      end, { desc = "Avanca para a proxima celula e a executa" })
+
+      vim.api.nvim_create_user_command("MoltenRunAll", function()
+        runner().run_all()
+      end, { desc = "Executa todas as celulas do buffer" })
+
+      vim.api.nvim_create_user_command("MoltenRunAbove", function()
+        runner().run_above()
+      end, { desc = "Executa todas as celulas ate a celula atual" })
+
+      vim.api.nvim_create_user_command("MoltenRunBelow", function()
+        runner().run_below()
+      end, { desc = "Executa da celula atual ate a ultima celula" })
+
+      vim.api.nvim_create_user_command("MoltenCellNext", function()
+        runner().jump_next()
+      end, { desc = "Pula para a proxima celula" })
+
+      vim.api.nvim_create_user_command("MoltenCellPrev", function()
+        runner().jump_prev()
+      end, { desc = "Pula para a celula anterior" })
     end,
   },
   {
