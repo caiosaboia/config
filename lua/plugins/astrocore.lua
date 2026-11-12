@@ -28,13 +28,7 @@ return {
     filetypes = {
       -- see `:h vim.filetype.add` for usage
       extension = {
-        foo = "fooscript",
-      },
-      filename = {
-        [".foorc"] = "fooscript",
-      },
-      pattern = {
-        [".*/etc/foo/.*"] = "fooscript",
+        txt = "markdown",
       },
     },
     -- Autocmds gerenciados pelo AstroCore
