@@ -59,6 +59,20 @@ return {
           end,
         },
       },
+      markdown_slash_commands = {
+        {
+          event = { "FileType", "BufEnter", "TextChanged", "TextChangedI" },
+          desc = "Highlight /slash-commands in markdown and .txt buffers",
+          callback = function(args)
+            if vim.bo[args.buf].filetype == "markdown" then
+              local ok, mod = pcall(require, "markdown.slash_commands")
+              if ok then
+                mod.highlight(args.buf)
+              end
+            end
+          end,
+        },
+      },
     },
     -- vim options can be configured here
     options = {

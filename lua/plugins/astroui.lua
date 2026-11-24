@@ -29,6 +29,7 @@ return {
       init = { -- this table overrides highlights in all themes
         -- Normal = { bg = "#000000" },
         CursorLineNr = { link = "Statement" },
+        MarkdownSlashCommand = { fg = "#cba6f7", bg = "#2e2640", bold = true },
       },
       astrodark = { -- a table of overrides/changes when applying the astrotheme theme
         -- Normal = { bg = "#000000" },
